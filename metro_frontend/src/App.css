@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sidebar mainpage"
+    "footer footer";
+  grid-template-columns: 250px auto; /* Sidebar fixed, Main Content flexible */
+  grid-template-rows: auto 1fr auto; /* Header auto, Main Content fills, Footer auto */
+  min-height: 100vh; /* Ensures full viewport height */
+}
+
+.Header {
+  grid-area: header;
+  width: 100%;
+	background-color: #4f868c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logocontainer{
+  display: flex;
+  align-items: center;
+}
+
+.logocontainer img {
+  border-radius: 50%;
+  height: 60px; /* Adjusted for responsiveness */
+  margin-right: 10px;
+}
+
+.logocontainer h4{
+  font-size: medium;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.Header p {
+  font-size: clamp(1.8rem, 3vw, 3rem); /* Responsive font size */
+  font-weight: bold;
+  color: #000;
+}
+
+.Map a{
+  text-decoration: none;
+  color: rgb(44, 9, 242);
+  font-weight: bold;
+}
+
+.Map a:hover{
+  text-decoration: underline;
+}
+
+.Map button{
+  height: 30px;
+  width: 90px;
+  border-radius: 25px;
+  background-color: yellow;
+  font-weight: bold;
+  margin-left: 30px;
+
+}
+
+/* ✅ Sidebar */
+.Sidebar {
+  grid-area: sidebar;
+  background-color: #f4f4f4;
+  padding: 20px;
+  min-width: 200px; /* Prevents sidebar from collapsing */
+}
+
+.Sidebar p{
+  font-size: x-large;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.Sidebar ul{
+  list-style-type: none;
+  margin-left: 20px;
+}
+
+.Sidebar ul li{
+  margin-top: 20px;
+  font-size: large;
+}
+
+/* ✅ Mainpage with Transparent Background */
+.Mainpage {
+  grid-area: mainpage;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.7); /* Transparency effect */
+}
+
+/* Background Image with Transparency */
+.Mainpage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('./m22.webp') center/cover no-repeat;
+  opacity: 0.95; /* Adjust transparency (0.1 - 1) */
+  z-index: -1;
+}
+
+/* ✅ Footer Always Visible */
+.Footer {
+  grid-area: footer;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+/* 🌟 Responsive Design */
+@media (max-width: 768px) {
+  .App {
+    grid-template-areas:
+      "header"
+      "mainpage"
+      "sidebar"
+      "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto auto;
+  }
+
+  .Sidebar {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .Header {
+    justify-content: center;
+  }
+}
+
